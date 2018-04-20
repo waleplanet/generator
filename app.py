@@ -70,8 +70,9 @@ def hello():
 def generate_wsq():
 
     incoming = json.loads(request.data.decode())
-    print(incoming.keys())
+
     incoming = base64.b64decode(incoming['image'])
+    print(incoming)
     make_wsq(incoming)
     return Response(status=200)
 
