@@ -69,6 +69,7 @@ def hello():
 def generate_wsq():
 
     incoming = request.data.image
+    print(incoming)
     incoming = base64.b64decode(incoming)
     make_wsq(incoming)
     return Response(status=200)
