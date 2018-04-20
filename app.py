@@ -28,7 +28,7 @@ def make_dat(bydata):
 def make_wsq(bydata):
     if not os.path.exists(os.path.join(BASE_DIR,'wsqf/')):
         os.makedirs(os.path.join(BASE_DIR,'wsqf/'))
-    name = fake.name().firstName+".wsq"
+    name = fake.name()+".wsq"
     path = os.path.join(BASE_DIR,'wsqf/'+name)
     if isinstance(bydata,str):
         bydata = bydata.encode()
