@@ -30,11 +30,11 @@ def make_wsq(bydata):
         os.makedirs(os.path.join(BASE_DIR,'wsqf/'))
     name = fake.name()+".wsq"
     path = os.path.join(BASE_DIR,'wsqf/'+name)
-    if isinstance(bydata,str):
-        bydata = bydata.encode()
-    barr= bytearray(bydata)
+    # if isinstance(bydata,str):
+    #     bydata = bydata.encode()
+    # barr= bytearray(bydata)
     with open(path,'wb') as f:
-        f.write(barr)
+        f.write(bydata)
 
 
 
@@ -71,8 +71,8 @@ def generate_wsq():
 
     incoming = json.loads(request.data.decode())
 
-    # incoming = base64.b64decode(incoming['image'])
-    incoming = incoming['image']
+    incoming = base64.b64decode(incoming['image'])
+    # incoming = incoming['image']
 
     print(incoming)
     make_wsq(incoming)
