@@ -61,6 +61,10 @@ def download_dat():
     except Exception as e:
         return str(e)
 
+@app.route("/hello",methods=['GET'])
+def hello():
+    return "<h2>hello</h2>"
+
 @app.route("/generate_wsq",methods=['POST'])
 def generate_wsq():
 
