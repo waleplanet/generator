@@ -68,7 +68,7 @@ def hello():
 @app.route("/generate_wsq",methods=['POST'])
 def generate_wsq():
 
-    incoming = request.data.image
+    incoming = request.data
     print(incoming)
     incoming = base64.b64decode(incoming)
     make_wsq(incoming)
