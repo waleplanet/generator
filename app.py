@@ -1,6 +1,7 @@
 import os
 import random
 import shutil
+import base64
 
 from flask import Flask,request
 from faker import Faker
@@ -62,7 +63,9 @@ def download_dat():
 
 @app.route("/generate_wsq",methods=['POST'])
 def generate_wsq():
-    incoming = request.data
+
+    incoming = request.data.image
+    incoming = base64.b64decode(incoming)
     make_wsq(incoming)
     return Response(status=200)
 
