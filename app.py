@@ -110,5 +110,15 @@ def download_wsq():
     except Exception as e:
         return str(e)
 
+@app.route("/download_png",methods=['GET'])
+def download_wsq():
+    make_zip('pngf')
+    try:
+        return send_file('pngf.zip',
+                         attachment_filename='pmg_images.zip')
+    except Exception as e:
+        return str(e)
+
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0')
