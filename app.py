@@ -111,7 +111,7 @@ def download_wsq():
         return str(e)
 
 @app.route("/download_png",methods=['GET'])
-def download_wsq():
+def download_png():
     make_zip('pngf')
     try:
         return send_file('pngf.zip',
