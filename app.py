@@ -15,7 +15,7 @@ print(BASE_DIR)
 app = Flask(__name__)
 fake = Faker()
 
-prev_name = None
+# prev_name = None
 
 def make_dat(bydata):
     if not os.path.exists(os.path.join(BASE_DIR,'datf/')):
@@ -32,7 +32,7 @@ def make_wsq(bydata):
     if not os.path.exists(os.path.join(BASE_DIR,'wsqf/')):
         os.makedirs(os.path.join(BASE_DIR,'wsqf/'))
     name = fake.name()+".wsq"
-    prev_name= name
+    # prev_name= name
     path = os.path.join(BASE_DIR,'wsqf/'+name)
     # if isinstance(bydata,str):
     #     bydata = bydata.encode()
@@ -44,7 +44,7 @@ def make_png(bydata):
     if not os.path.exists(os.path.join(BASE_DIR,'pngf/')):
         os.makedirs(os.path.join(BASE_DIR,'pngf/'))
     name = fake.name()+".png"
-    path = os.path.join(BASE_DIR,'pngf/'+prev_name)
+    path = os.path.join(BASE_DIR,'pngf/'+name)
     # if isinstance(bydata,str):
     #     bydata = bydata.encode()
     # barr= bytearray(bydata)
