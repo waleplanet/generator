@@ -14,6 +14,9 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 print(BASE_DIR)
 app = Flask(__name__)
 fake = Faker()
+
+prev_name = None
+
 def make_dat(bydata):
     if not os.path.exists(os.path.join(BASE_DIR,'datf/')):
         os.makedirs(os.path.join(BASE_DIR,'datf/'))
@@ -29,6 +32,7 @@ def make_wsq(bydata):
     if not os.path.exists(os.path.join(BASE_DIR,'wsqf/')):
         os.makedirs(os.path.join(BASE_DIR,'wsqf/'))
     name = fake.name()+".wsq"
+    prev_name= name
     path = os.path.join(BASE_DIR,'wsqf/'+name)
     # if isinstance(bydata,str):
     #     bydata = bydata.encode()
@@ -36,6 +40,16 @@ def make_wsq(bydata):
     with open(path,'wb') as f:
         f.write(bydata)
 
+def make_png(bydata):
+    if not os.path.exists(os.path.join(BASE_DIR,'pngf/')):
+        os.makedirs(os.path.join(BASE_DIR,'pngf/'))
+    name = fake.name()+".png"
+    path = os.path.join(BASE_DIR,'pngf/'+prev_name)
+    # if isinstance(bydata,str):
+    #     bydata = bydata.encode()
+    # barr= bytearray(bydata)
+    with open(path,'wb') as f:
+        f.write(bydata)
 
 
 # barr = bytearray(random.getrandbits(8) for i in range (256))
@@ -74,9 +88,18 @@ def generate_wsq():
     incoming = base64.b64decode(incoming['image'])
     # incoming = incoming['image']
 
-    print(incoming)
+    # print(incoming)
     make_wsq(incoming)
     return Response(status=200)
+
+@app.route("/generate_png",methods=['POST'])
+def generate_png():
+    incoming = json.loads(request.data.decode())
+
+    incoming = base64.b64decode(incoming['image'])
+    make_png(incoming)
+    return Response(status=200)
+
 
 @app.route("/download_wsq",methods=['GET'])
 def download_wsq():
