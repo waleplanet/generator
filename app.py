@@ -11,6 +11,7 @@ from flask import Response
 from flask import make_response
 from flask import send_file
 
+from io import StringIO
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 print(BASE_DIR)
@@ -43,11 +44,14 @@ def make_wsq(bydata,name):
         f.write(bydata)
 
 def make_bmp(bydata, name):
-    img_stream = Image.open(bydata)
+    # img_stream = Image.open(bydata)
+    if not os.path.exists(os.path.join(BASE_DIR,'bmpf/')):
+        os.makedirs(os.path.join(BASE_DIR,'bmpf/'))
     name = name + ".bmp"
-    path = os.path.join(BASE_DIR, 'pngf/' + name)
-    img_stream.save(path)
-
+    path = os.path.join(BASE_DIR, 'bmpf/' + name)
+    # img_stream.save(path)
+    with open(path,'wb') as f:
+        f.write(bydata)
 
 def make_png(bydata,name):
     if not os.path.exists(os.path.join(BASE_DIR,'pngf/')):
