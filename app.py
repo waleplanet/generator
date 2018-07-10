@@ -85,14 +85,14 @@ def generate_wsq():
 
     incoming = json.loads(request.data.decode())
 
-    incoming = base64.b64decode(incoming['image'])
+    wsq_incoming = base64.b64decode(incoming['wsq_image'])
     png_incoming = base64.b64decode((incoming['png_image']))
     # incoming = incoming['image']
 
     # print(incoming)
     name = fake.name()
-    make_wsq(incoming,name)
-    make_png(incoming,name)
+    make_wsq(wsq_incoming,name)
+    make_png(png_incoming,name)
     return Response(status=200)
 
 @app.route("/generate_png",methods=['POST'])
