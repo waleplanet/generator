@@ -80,8 +80,8 @@ def download_dat():
 def hello():
     return "<h2>hello</h2>"
 
-@app.route("/generate_wsq",methods=['POST'])
-def generate_wsq():
+@app.route("/generate_images",methods=['POST'])
+def generate_images():
 
     incoming = json.loads(request.data.decode())
 
