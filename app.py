@@ -4,6 +4,7 @@ import random
 import shutil
 import base64
 
+import io
 from PIL import Image
 from flask import Flask,request
 from faker import Faker
@@ -49,9 +50,10 @@ def make_bmp(bydata, name):
         os.makedirs(os.path.join(BASE_DIR,'bmpf/'))
     name = name + ".bmp"
     path = os.path.join(BASE_DIR, 'bmpf/' + name)
-    # img_stream.save(path)
-    with open(path,'wb') as f:
-        f.write(bydata)
+    image = Image.open(io.BytesIO(bydata))
+    image.save(path)
+    # with open(path,'wb') as f:
+    #     f.write(bydata)
 
 def make_png(bydata,name):
     if not os.path.exists(os.path.join(BASE_DIR,'pngf/')):
