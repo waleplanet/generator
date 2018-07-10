@@ -28,10 +28,10 @@ def make_dat(bydata):
     with open(path,'wb') as f:
         f.write(barr)
 
-def make_wsq(bydata):
+def make_wsq(bydata,name):
     if not os.path.exists(os.path.join(BASE_DIR,'wsqf/')):
         os.makedirs(os.path.join(BASE_DIR,'wsqf/'))
-    name = fake.name()+".wsq"
+    name = name+".wsq"
     # prev_name= name
     path = os.path.join(BASE_DIR,'wsqf/'+name)
     # if isinstance(bydata,str):
@@ -40,10 +40,10 @@ def make_wsq(bydata):
     with open(path,'wb') as f:
         f.write(bydata)
 
-def make_png(bydata):
+def make_png(bydata,name):
     if not os.path.exists(os.path.join(BASE_DIR,'pngf/')):
         os.makedirs(os.path.join(BASE_DIR,'pngf/'))
-    name = fake.name()+".png"
+    name = name+".png"
     path = os.path.join(BASE_DIR,'pngf/'+name)
     # if isinstance(bydata,str):
     #     bydata = bydata.encode()
@@ -86,10 +86,13 @@ def generate_wsq():
     incoming = json.loads(request.data.decode())
 
     incoming = base64.b64decode(incoming['image'])
+    png_incoming = base64.b64decode((incoming['png_image']))
     # incoming = incoming['image']
 
     # print(incoming)
-    make_wsq(incoming)
+    name = fake.name()
+    make_wsq(incoming,name)
+    make_png(incoming,name)
     return Response(status=200)
 
 @app.route("/generate_png",methods=['POST'])
