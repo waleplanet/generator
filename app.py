@@ -143,5 +143,14 @@ def download_png():
         return str(e)
 
 
+@app.route("/download_bmp",methods=['GET'])
+def download_bmp():
+    make_zip('bmpf')
+    try:
+        return send_file('bmpf.zip',
+                         attachment_filename='bmp_images.zip')
+    except Exception as e:
+        return str(e)
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0')
