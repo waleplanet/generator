@@ -5,14 +5,16 @@ import shutil
 import base64
 
 import io
-from PIL import Image
+from PIL import Image,ImageFile
 from flask import Flask,request
 from faker import Faker
 from flask import Response
 from flask import make_response
 from flask import send_file
 
-from io import StringIO
+# from io import StringIO
+
+ImageFile.LOAD_TRUNCATED_IMAGES = True
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 print(BASE_DIR)
