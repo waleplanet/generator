@@ -4,11 +4,13 @@ import random
 import shutil
 import base64
 
+from PIL import Image
 from flask import Flask,request
 from faker import Faker
 from flask import Response
 from flask import make_response
 from flask import send_file
+
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 print(BASE_DIR)
@@ -39,6 +41,13 @@ def make_wsq(bydata,name):
     # barr= bytearray(bydata)
     with open(path,'wb') as f:
         f.write(bydata)
+
+def make_bmp(bydata, name):
+    img_stream = Image.open(bydata)
+    name = name + ".bmp"
+    path = os.path.join(BASE_DIR, 'pngf/' + name)
+    img_stream.save(path)
+
 
 def make_png(bydata,name):
     if not os.path.exists(os.path.join(BASE_DIR,'pngf/')):
@@ -80,6 +89,10 @@ def download_dat():
 def hello():
     return "<h2>hello</h2>"
 
+
+
+
+
 @app.route("/generate_images",methods=['POST'])
 def generate_images():
 
@@ -89,10 +102,13 @@ def generate_images():
     png_incoming = base64.b64decode((incoming['png_image']))
     # incoming = incoming['image']
 
-    # print(incoming)
     name = fake.name()
+
+    # print(incoming)
+
     make_wsq(wsq_incoming,name)
-    make_png(png_incoming,name)
+    # make_png(png_incoming,name)
+    make_bmp(png_incoming,name)
     return Response(status=200)
 
 @app.route("/generate_png",methods=['POST'])
