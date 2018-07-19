@@ -114,10 +114,31 @@ def generate_images():
     png_incoming = base64.b64decode((incoming['png_image']))
     # incoming = incoming['image']
 
-    name = fake.name()
+    # name = fake.name()
 
-    # print(incoming)
-
+    DIR = 'wsqf'
+    wsqs = [name for name in os.listdir(DIR) if os.path.isfile(os.path.join(DIR,name))].sort()
+    
+    if len(wsqs) == 0:
+        name = '00001_01_002_01'
+    else:
+        last_name = wsqs[-1:][0]
+        last_name = last_name.split('.')[0]
+    
+    last_name = last_name.split('_')
+    
+    if int(last_name[3]) < 10:
+        last_name[3] = int(last_name) + 1
+    else:
+        last_name[3] = '01'
+        last_name[0] = int(last_name[0]) + 1
+        if len(str(last_name[0])) < 5:
+            last_name[0]  = '0'* (5-len(str(last_name[0]))) + str(last_name[0])
+        
+    name = "_".join(last_name)
+    
+        
+        
     make_wsq(wsq_incoming,name)
     # make_png(png_incoming,name)
     make_bmp(png_incoming,name)
