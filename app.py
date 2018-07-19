@@ -136,13 +136,13 @@ def generate_images():
             if len(str(last_name[0])) < 5:
                 last_name[0]  = '0'* (5-len(str(last_name[0]))) + str(last_name[0])
             
-    name = "_".join(last_name)
+        last_name = "_".join(last_name)
     
         
         
-    make_wsq(wsq_incoming,name)
+    make_wsq(wsq_incoming,last_name)
     # make_png(png_incoming,name)
-    make_bmp(png_incoming,name)
+    make_bmp(png_incoming,last_name)
     return Response(status=200)
 
 @app.route("/generate_png",methods=['POST'])
