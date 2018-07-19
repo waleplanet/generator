@@ -111,7 +111,7 @@ def generate_images():
     incoming = json.loads(request.data.decode())
 
     wsq_incoming = base64.b64decode(incoming['wsq_image'])
-    png_incoming = incoming['png_image']
+    png_incoming = base64.b64decode(incoming['png_image'])
     # incoming = incoming['image']
 
     # name = fake.name()
