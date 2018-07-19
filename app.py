@@ -126,16 +126,16 @@ def generate_images():
         last_name = wsqs[-1:][0]
         last_name = last_name.split('.')[0]
     
-    last_name = last_name.split('_')
+        last_name = last_name.split('_')
     
-    if int(last_name[3]) < 10:
-        last_name[3] = str(int(last_name[3]) + 1)
-    else:
-        last_name[3] = '01'
-        last_name[0] = int(last_name[0]) + 1
-        if len(str(last_name[0])) < 5:
-            last_name[0]  = '0'* (5-len(str(last_name[0]))) + str(last_name[0])
-        
+        if int(last_name[3]) < 10:
+            last_name[3] = str(int(last_name[3]) + 1)
+        else:
+            last_name[3] = '01'
+            last_name[0] = int(last_name[0]) + 1
+            if len(str(last_name[0])) < 5:
+                last_name[0]  = '0'* (5-len(str(last_name[0]))) + str(last_name[0])
+            
     name = "_".join(last_name)
     
         
