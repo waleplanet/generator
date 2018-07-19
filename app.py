@@ -141,7 +141,7 @@ def generate_images():
         
         
     make_wsq(wsq_incoming,last_name)
-    # make_png(png_incoming,name)
+    make_png(png_incoming,last_name)
     make_bmp(png_incoming,last_name)
     return Response(status=200)
 
