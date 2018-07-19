@@ -56,7 +56,7 @@ def make_bmp(bydata, name):
     path = os.path.join(BASE_DIR, 'bmpf/' + name)
     image = Image.open(io.BytesIO(bydata))
     # wpercent = (basewidth/float(ima))
-    image.resize((basewidth,baseheight),Image.ANTIALIAS)
+    image = image.resize((basewidth,baseheight),Image.ANTIALIAS)
     image.save(path)
     # with open(path,'wb') as f:
     #     f.write(bydata)
