@@ -51,8 +51,12 @@ def make_bmp(bydata, name):
     if not os.path.exists(os.path.join(BASE_DIR,'bmpf/')):
         os.makedirs(os.path.join(BASE_DIR,'bmpf/'))
     name = name + ".bmp"
+    basewidth = 800
+    baseheight = 800
     path = os.path.join(BASE_DIR, 'bmpf/' + name)
     image = Image.open(io.BytesIO(bydata))
+    # wpercent = (basewidth/float(ima))
+    image.resize((basewidth,baseheight),Image.ANTIALIAS)
     image.save(path)
     # with open(path,'wb') as f:
     #     f.write(bydata)
