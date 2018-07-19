@@ -117,8 +117,8 @@ def generate_images():
     # name = fake.name()
 
     DIR = 'wsqf'
-    wsqs = [name for name in os.listdir(DIR) if os.path.isfile(os.path.join(DIR,name))].sort()
-    
+    wsqs = [name for name in os.listdir(DIR) if os.path.isfile(os.path.join(DIR,name))]
+    wsqs.sort()
     if len(wsqs) == 0:
         name = '00001_01_002_01'
     else:
