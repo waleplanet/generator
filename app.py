@@ -129,7 +129,9 @@ def generate_images():
         last_name = last_name.split('_')
     
         if int(last_name[3]) < 10:
-            last_name[3] =  str(int(last_name[3]) + 1)
+            last_name[3] = str(int(last_name[3]) + 1)
+            if len(last_name[3]) < 2 :
+                last_name[3] = '0' + last_name[3]
         else:
             last_name[3] = '01'
             last_name[0] = int(last_name[0]) + 1
